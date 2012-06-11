@@ -1,0 +1,5 @@
+>show databases;
+>create database eventManage;
+>use eventManage;
+
+CREATING TABLES

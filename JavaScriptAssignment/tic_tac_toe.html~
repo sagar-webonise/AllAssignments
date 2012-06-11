@@ -1,0 +1,125 @@
+<html>
+<head>
+<title>Tic Tac Toe Game</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+<script>
+var toggle=1;
+var game_square = new Array(3);
+var count=0;
+window.onload = initialize();
+
+function initialize(){
+	for(var i=0;i<3;i++){
+		game_square[i] = new Array(3);
+ }
+		
+}
+function check_win(){
+  var play_again;
+ var flag=0;
+  msg = " win \n Play Again ?"
+  for(var i=0;i<3;i++){
+     	   if(game_square[i][0]=='x' && game_square[i][1]=='x' && game_square[i][2]=='x' ){
+     	   		play_again = confirm(game_square[i][0]+msg);
+     	   		flag=1;
+     	   	}
+     	   
+     	   if(game_square[i][0]=='o' && game_square[i][1]=='o' && game_square[i][2]=='o' ){
+     	   	play_again = confirm(game_square[i][0]+msg);
+     	   	flag=1;
+     	   }
+         if(game_square[0][i]=='x' && game_square[1][i]=='x' && game_square[2][i]=='x' ){
+     	   	play_again = confirm(game_square[0][i]+msg);
+     	   	flag=1;
+     	   	}
+     	   		
+     	   if(game_square[0][i]=='o' && game_square[1][i]=='o' && game_square[2][i]=='o' ){
+     	   	play_again = confirm(game_square[0][i]+msg);
+     	   	flag=1;
+     	   	}
+  
+      }
+  if(game_square[0][0]=='x' && game_square[1][1]=='x' && game_square[2][2]=='x' ){
+   	play_again = confirm(game_square[0][0]+msg);
+   	flag=1;
+ 		}
+  
+  if(game_square[0][0]=='o' && game_square[1][1]=='o' && game_square[2][2]=='o' ){
+   	play_again = confirm(game_square[0][0]+msg);
+   	flag=1;
+   	}
+  
+  if(game_square[0][2]=='o' && game_square[1][1]=='o' && game_square[2][0]=='o' ){
+   	play_again = confirm(game_square[2][0]+msg);
+   	flag=1;
+   	}
+   	
+   if(game_square[0][2]=='x' && game_square[1][1]=='x' && game_square[2][0]=='x' ){
+   	play_again = confirm(game_square[2][0]+msg);             
+		flag=1;   	
+   	}	
+               
+   if(count==8 && !flag)
+  	  play_again = confirm("Game Draw");
+         
+         if(play_again)
+         	{
+         		document.location.href = "tic_tac_toe.html";
+         		return;
+         	} 	
+         else
+	         {
+	         	
+	         }  
+  
+   
+  return false ;
+}
+
+function tic(row , col , bt_id)
+{
+  
+  if (toggle){
+     toggle=0;
+     game_square[row][col]='x';
+     document.getElementById(bt_id).value="x";
+     document.getElementById(bt_id).disabled=true;
+   }
+  else{
+  	  toggle=1;     
+  	  game_square[row][col]='o';
+  	  document.getElementById(bt_id).value="o"
+  	  document.getElementById(bt_id).disabled=true;
+  	}  
+  	check_win();
+  	count++;
+}
+</script>
+</head>
+
+
+<body>
+<div id="content">
+<h2>WELCOME TO TIC TAC TOE GAME </h2>
+<h3>...developed by Sagar Shirsath</h3>
+please press following buttons to play
+
+<div id=square>
+<input type=button onclick="tic(0,0,1)" id="1" value="  " />
+<input type=button onclick="tic(0,1,2)" id="2" value="  " / >
+<input type=button onclick="tic(0,2,3)" id="3" value="  " />
+<br />
+<input type=button onclick="tic(1,0,4)" id="4" value="  " />
+<input type=button onclick="tic(1,1,5)" id="5" value="  " />
+<input type=button onclick="tic(1,2,6)" id="6" value="  " />
+<br />
+<input type=button onclick="tic(2,0,7)" id="7" value="  " />
+<input type=button onclick="tic(2,1,8)" id="8" value="  " />
+<input type=button onclick="tic(2,2,9)" id="9" value="  " />
+</div>
+<br>
+<a href="tic_tac_toe.html" > Play Again</a>
+</div>
+</body>
+</html>
+

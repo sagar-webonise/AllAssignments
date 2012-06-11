@@ -1,0 +1,14 @@
+Build Me An Antfarm!!                                                                                                                                                                                                                       
+Here's the requirements:
+Functional Requirements:
+
+A meadow can have many ant farms in them. For this assignment, only ever allow one meadow to take place.
+A meadow should be capable of spawning a logically unlimited number of antfarms.
+An antfarm should be comprised of a network of antfarm rooms.
+An antfarm should have rooms for spawning more ants.
+Ants should be able to battle other ants. When they do, the loser of the battle should die (it's antfarm can no longer command it), and the winner of the battle should get the attributes of the ant.
+An antfarm should only have one species of ant. Each species should have some kind of bonus to them. Perhaps they harvest food faster. Perhaps they have a higher chance to kill other ants.
+If a member of an ant colony kills the queen of another colony, the killer's queen should assume control of the dead queen's population of ants. all ants should now also have the attributes of both species of ant. (So if one species was strong, and the other species was efficient, now both populations are merged into a single population that is both strong and efficient.)
+Ants should have to rest every so often. When they do, they should consume food. An antfarm should be limited in capacity of how many ants can rest at a time based on the number of rooms (X amount per resting room).
+The simulation should end when, at the end of a tick, there is 1 or less active colonies/queens. This means you should spawn at least 2 colonies before your first tick.
+Rooms in the Antfarm should require a certain (probably large) number of worker-ticks to build. So, if it would take 1 worker 100 ticks to dig a room, it would take 50 workers 2 ticks, etc. But there should be a significant cost to building a room, since rooms determine how much you can rest.

@@ -1,0 +1,102 @@
+>show databases;
+>create database eventManage;
+>use eventManage;
+
+CREATING TABLES:
+create table event(
+id int NOT NULL ,
+name varchar(200) UNIQUE,
+description varchar(1000),
+venue varchar(300),
+start datetime NOT NULL,
+end datetime NOT NULL,
+PRIMARY KEY(id)
+);
+
+
+
+create table user(
+id int NOT NULL , 
+username varchar(20) UNIQUE ,
+email varchar(30) NOT NULL UNIQUE,
+address varchar(100),
+PRIMARY KEY(id)
+);
+
+
+
+create table event_user(
+id int NOT NULL , 
+creator int NOT NULL,
+event_id int NOT NULL,
+user_id int NOT NULL,
+attending boolean default 0 ,
+FOREIGN KEY (event_id) REFERENCES event(id),
+FOREIGN KEY (user_id) REFERENCES user(id),
+FOREIGN KEY (creator) REFERENCES user(id),
+PRIMARY KEY(id)
+);
+
+
+insert into event values(1,'party','we will enjoy party','Taj hotel mumbai','2012-5-2 04:13:54','2012-5-2 08:13:54');
+
+insert into user values(1,'sagar','sagars@ss.com','pune');
+insert into event_user (id , creator , event_id , user_id) values(1,1,1,2);
+
+(before insert we have to fire a trigger on event_user(emails) so that emails are unique for each event)
+
+LISTING ALL EVENTS :
+
+select * from event;
++----+---------+------------------------------+-------------------------+---------------------+---------------------+
+| id | name    | description                  | venue                   | start               | end                 |
++----+---------+------------------------------+-------------------------+---------------------+---------------------+
+|  1 | party   | we will enjoy party          | Taj hotel mumbai        | 2012-05-02 04:13:54 | 2012-05-02 08:13:54 |
+|  2 | meeting | discussion about new project | Webonis office PF No. 2 | 2012-05-02 01:13:54 | 2012-05-02 02:13:54 |
+|  3 | test    | test                         | Webonis office PF No. 2 | 2012-05-02 01:13:54 | 2012-05-02 02:13:54 |
+|  4 | game    | test                         | ground                  | 2012-05-02 01:13:54 | 2012-05-02 02:13:54 |
++----+---------+------------------------------+-------------------------+---------------------+---------------------+
+4 rows in set (0.00 sec)
+
+LISTING ATTENDEES ATTENDING EVENT :
+
+
+  select name , email  
+  from user u , 
+  event e , event_user eu  
+  where u.id = eu.id;
+ 
++---------+----------------+
+| name    | email          |
++---------+----------------+
+| party   | sagars@ss.com  |
+| party   | mang@ss.com    |
+| party   | santosh@ss.com |
+| meeting | sagars@ss.com  |
+| meeting | mang@ss.com    |
+| meeting | santosh@ss.com |
+| test    | sagars@ss.com  |
+| test    | mang@ss.com    |
+| test    | santosh@ss.com |
+| game    | sagars@ss.com  |
+| game    | mang@ss.com    |
+| game    | santosh@ss.com |
++---------+----------------+
+12 rows in set (0.00 sec)
+
+
+TO SELECT ATTENDEES FOR AN EVENT THEN:
+select username 
+from user u , event_user eu   
+where eu.event_id=1;
+
+
+CREATING TRIGGER:(It't just outline of trigger)
+create trigger evuser 
+before insert on event_user 
+for each row beign 
+  select user_id , event_from id event_user
+  if user_id==NEW.user_id  AND event_id == event_id Then
+   print "User email must be unique to An Event"
+end;
+
