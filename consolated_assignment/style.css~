@@ -14,8 +14,7 @@ root {
 	height: 790px;
 	width: 1580px;
 	border-width: 5px;
-	background-color: #D1FFFF
-;
+	
 	border : 1px solid #D4D4D4;
 	position: relative;
 	
@@ -72,3 +71,21 @@ root {
 	border : 2px solid #D4D4D4;
 
 	}
+	
+.form{
+   height: 565px;
+	width: 500px;
+	position: absolute;
+	top:1%;
+	left: 25%;
+	border-width: 5px;
+   border-radius: 15px;
+   
+	border : 2px solid #D4D4D4;
+	padding: 10px;
+	clear: both;
+
+	}
+.form input{
+ 	
+}	

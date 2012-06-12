@@ -15,9 +15,17 @@
         <div class="content">
         <div class="header"></div>
         <div class="left"></div>
-        <div class="center"></div>
+        <div class="center" >
+        <div class="form">
+         <input type="text" id="name" />
+         <input type="text" id="name" />
+  			<input type="text" id="name" />
+			<input type="text" id="name" />
+			<input type="text" id="name" />
+			</div> 
+        </div>
         <div class="right"></div>
-        <div class="left"></div>
+        <div class="footer"></div>
         </div>
         
     </body>
